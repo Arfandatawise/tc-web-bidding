@@ -1,0 +1,215 @@
+.row_box {
+    padding: 2px;
+	border: solid 2px #34419b;
+	height: 675px;
+}
+.bid-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #8182d9;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    margin: 10px 0;
+}
+	.transactionstatus.en_mode {
+    background-color: #34419b;
+    color: #fff;
+	padding: 3px;
+}
+	.startprice_imagemode {
+    background: #34419b;
+    color: #fff;
+	padding: 3px;
+}
+.resultprice{
+    background: #34419b;
+    color: #fff;
+	padding: 3px; 
+}
+	.exhibitnum {
+    color: #34419b;
+}
+	.list-body-image.body-image-large.lazy-image.img-car {
+    float: left;
+    border-radius: 8px;
+    margin: 2px 2px;
+	-webkit-box-shadow: 0px 0px 4px 1px rgba(0,0,0,1);
+-moz-box-shadow: 0px 0px 4px 1px rgba(0,0,0,1);
+box-shadow: 0px 0px 4px 1px rgba(0,0,0,1);
+}
+.bid-remark {
+    width: 100%;
+}
+	.col1 {
+    width: 20%;
+    background-color: #fddbb4;
+}
+		button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+    border-radius: 4px;
+	/*width: 24%;*/
+    -webkit-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.54);
+    -moz-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.54);
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.54);
+}
+	.red-button {
+    cursor: pointer;
+    background: -webkit-linear-gradient(top,#FF54A0 0,#D60047 100%);
+    background: linear-gradient(to bottom,#FF54A0 0,#D60047 100%);
+		 width: 9% !important;
+		 float:left;
+}	
+		.orange-button{
+			cursor: pointer;
+    background: -webkit-linear-gradient(top,#F9A600 0,#f9a600 100%);
+    background: linear-gradient(to bottom,#F9A600 0,#ff7400 100%);
+			 width: 9% !important;
+			font-weight: bold;
+		}
+		.r-button{
+			cursor: pointer;
+    background: -webkit-linear-gradient(top,#466CDD 0,#466CDD 100%);
+    background: linear-gradient(to bottom,#1D5BD6 0,#1D5BD6 100%);
+			 width: 9% !important;
+			color: #fff;
+			font-weight: bold;
+		}
+		.que-button{
+			cursor: pointer;
+    background: -webkit-linear-gradient(top,#51B5F7 0,#51B5F7 100%);
+    background: linear-gradient(to bottom,#0fb4e7 0,#0fb4e7 100%);
+			 width: 9% !important;
+		}
+.bid-type {
+    width: 25%;
+}
+	.remarks {
+    width: 35%;
+}
+		.bid-hendle-main{
+			background-color: white;
+			border:solid 1px white;
+			float: left;
+			border-radius: 4px;
+			width: 100%;
+			margin: 4px 0;
+			padding: 4px;
+			-webkit-box-shadow: inset 0px 0px 0px 2px rgba(255,255,255,1);
+-moz-box-shadow: inset 0px 0px 0px 2px rgba(255,255,255,1);
+box-shadow: inset 0px 0px 0px 2px rgba(255,255,255,1);
+		}
+		.bid-header{
+			/*width: 100%;
+			height: 275px;
+			overflow-y: auto;*/
+		}
+		.fa-close img {
+			width: 25px;
+}
+		.fa-close {
+    float: left;
+}
+		.fa-que{
+			float: right;
+		}
+		.fa-que img{
+			width: 25px;
+		}
+		.bid-header p {
+			float: right;
+			line-height: 28px;
+		}
+		
+		/* it's country flag related css*/
+
+
+.bid-header .flag {
+    width: 18px;
+    height: 13px;
+    display: inline-block;
+    background-image:  url('chrome-extension://__MSG_@@extension_id__/sprites.png');
+    background-repeat: no-repeat;
+    margin-top: 6px;
+}
+.bid-header .flag.pyccknn {
+	background-position: -23px -113px
+}
+.bid-header .flag.spanish {
+	background-position: -23px -95px
+}
+.bid-header .flag.french {
+	background-position: -23px -81px
+}
+.bid-header .flag.portugues {
+	background-position: -23px -68px
+}
+.bid-header .flag.pakistan {
+	background-position: 0 0
+}
+.bid-header .flag.japan {
+	background-position: 0 -14px
+}
+.bid-header .flag.japan-online {
+	background-position: 0 -141px
+}
+.bid-header .flag.tanzania {
+	background-position: 0 -28px
+}
+.bid-header .flag.zambia {
+	background-position: 0 -42px
+}
+.bid-header .flag.uganda {
+	background-position: -24px -141px
+}
+.bid-header .flag.south-africa {
+	background-position: 0 -56px
+}
+.bid-header .flag.uae {
+	background-position: 0 -70px
+}
+.bid-header .flag.namibia {
+	background-position: 0 -127px
+}
+.bid-header .flag.kenya {
+	background-position: 0 -84px
+}
+.bid-header .flag.uk {
+	background-position: 0 -98px
+}
+.bid-header .flag.global {
+	background-position: 0 -112px
+}
+.bid-header .flag.swaziland {
+	background-position: 0 -156px;
+}
+.bid-header .flag.lesotho {
+	background-position: -24px -155px !important;
+}
+.bid-header .flag.mongolia {
+	background-position: -22px -171px !important;
+}
+.bid-header .flag.newzealand {
+    background-position: 0 -186px;
+}
+.bid-header .flag.chili {
+    background-position: -24px -184px;
+}
+.bid-header .flag.flag.botswana {
+    background-position: -24px -127px;
+}
+.bid-header .flag.flag.dominican {
+    background-position: -24px -156px;
+}
+.bid-header .flag.flag.philippines {
+    background-position: 0px -171px;
+}
+.bid-header .flag.flag.jamaica {
+    background-position: -24px -220px;
+}
+.bid-header .flag.flag.australia {
+    background-position: -24px -234px;
+}
