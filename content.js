@@ -13,7 +13,7 @@ let currentUrl = window.location.href;
    
    
     var table =
-      `<div style="right:15px;top:10px; width:130px;position:fixed;font-family: Gotham, Helvetica Neue, Helvetica, Arial, sans-serif !important;border-radius: 10px;padding:15px;background-color:rgb(248 224 20);z-index:10000" id="modal_selection_div_id">
+      `<div style="right:15px;top:10px; width:130px;position:fixed;font-family: Gotham, Helvetica Neue, Helvetica, Arial, sans-serif !important;border-radius: 10px;padding:15px;background-color:#FCBF01;z-index:10000" id="modal_selection_div_id">
       <button id="load_bid_uss" style="padding:3px 12px;width:100%">Show Bid</button>
       </div>`;
      
@@ -146,7 +146,7 @@ let currentUrl = window.location.href;
           chassis_modal = cleanString( chassis_modal);
           // here we append our div
           let unique_append_div_id  = makeUniqueId(lot_no,date,chassis_modal);
-          let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 220px;margin: 0 auto;padding: 5px 0px 11px;'></div>"
+          let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 205px;margin: 0 auto;padding: 5px 0px 11px;'></div>"
           // $(targetRow).next().insertAfter(users_bid_div);
           $(targetRow.find("td").eq(10)).append(users_bid_div)
           // Push to your list
@@ -204,7 +204,7 @@ let currentUrl = window.location.href;
           chassis_modal = cleanString( chassis_modal);
             // here we append our div
             let unique_append_div_id  = makeUniqueId(lot_no,date,chassis_modal);
-            let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 220px;margin: 0 auto;padding: 5px 0px 11px;'></div>"
+            let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 205px;margin: 0 auto;padding: 5px 0px 11px;'></div>"
             // $(targetRow).next().insertAfter(users_bid_div);
             $(users_bid_div).insertAfter($('table.favmove').eq(1));
           
@@ -250,7 +250,7 @@ let currentUrl = window.location.href;
           }
         
         let unique_append_div_id  = makeUniqueId(lot_no,date,chassis_modal);
-        let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 220px;margin: 0 auto;padding: 5px 0px 11px;float: inline-start;'></div>"
+        let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 205px;margin: 0 auto;padding: 5px 0px 11px;float: inline-start;'></div>"
         // $(targetRow).next().insertAfter(users_bid_div);
         // $($tds.find("td").eq(11)).append(users_bid_div)
         $(users_bid_div).insertAfter($('table.favmove').eq(1)); 
@@ -396,7 +396,7 @@ let currentUrl = window.location.href;
             chassis_modal = cleanString( chassis_modal);
             // here we append our div
             let unique_append_div_id  = makeUniqueId(lot_no,date,chassis_modal);
-            let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 220px;margin: 0 auto;padding: 5px 0px 11px;'></div>"
+            let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 205px;margin: 0 auto;padding: 5px 0px 11px;'></div>"
             // $(targetRow).next().insertAfter(users_bid_div);
             $(targetRow.find("td").eq(10)).append(users_bid_div)
             // Push to your list
@@ -454,7 +454,7 @@ let currentUrl = window.location.href;
             chassis_modal = cleanString( chassis_modal);
               // here we append our div
               let unique_append_div_id  = makeUniqueId(lot_no,date,chassis_modal);
-              let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 220px;margin: 0 auto;padding: 5px 0px 11px;'></div>"
+              let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 205px;margin: 0 auto;padding: 5px 0px 11px;'></div>"
               // $(targetRow).next().insertAfter(users_bid_div);
               $($tds.find("td").eq(11)).append(users_bid_div)
             // --- Add to array ---
@@ -499,7 +499,7 @@ let currentUrl = window.location.href;
             }
           
           let unique_append_div_id  = makeUniqueId(lot_no,date,chassis_modal);
-          let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 220px;margin: 0 auto;padding: 5px 0px 11px;float: inline-start;'></div>"
+          let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 205px;margin: 0 auto;padding: 5px 0px 11px;float: inline-start;'></div>"
           // $(targetRow).next().insertAfter(users_bid_div);
           // $($tds.find("td").eq(11)).append(users_bid_div)
           $(users_bid_div).insertAfter($('table.favmove').eq(1)); 
@@ -656,16 +656,45 @@ function getUserData(show_bid_name,hr_name,f_bid_price,user_id,sh_cntry,expense,
 }
 
 function getUserdataLikeIuacExt(show_bid_name,hr_name,f_bid_price,user_id,sh_cntry,expense,remark,rate_color){
+  // let user_name = getFirstName(user_id);
+  // let expense_deducted = `<span style="color: black; font-size: 14px; margin: 0 2px;color:black;font-size: 12px">Trp: ${expense}</span>`;
+
+  // let add_bid =
+  //     `<div style="background-color: #FCBF01; padding: 3px; font-family: Arial; width: 100%; box-sizing: border-box;">
+  //         <!-- First Row -->
+  //         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+  //             <span style="display: flex; align-items: center;">
+  //                 <span title="${show_bid_name}" class="flag ${hr_name}" style="margin-right: 2px;"></span>
+  //                 <div title="${sh_cntry}" style="white-space: nowrap; max-width: 80px; overflow: hidden; text-overflow: ellipsis; font-size: 12px;color:black">${sh_cntry}</div>
+  //             </span>
+  //             ${expense_deducted}
+  //             <sp
+          
+  //         <!-- Second Row -->
+  //         <div style="display: flex; gap: 3px; justify-content: center;">
+  //             <input title="${show_bid_name}" 
+  //                 style="width: 98px; font-weight: bold; padding: 5px; height: 20px; text-align: center; border-radius: 3px; border: none; background-color: white; color: ${rate_color}; box-sizing: border-box;"
+  //                 class="already_bid_value njm_pre_price show_space_tb" disabled type="text" value="${f_bid_price}" placeholder="Bid...." />
+
+  //             <input title="${show_bid_name}" 
+  //                 style="width: 98px; font-weight: bold; padding: 5px; height: 20px; text-align: center; border-radius: 3px; border: none; background-color: white; box-sizing: border-box;"
+  //                 class="already_bid_value njm_pre_ramarks" type="text" disabled value="${remark}" placeholder="Remarks...." />
+  //         </div>
+
+        
+  //     </div>`;
+
+  // return add_bid;
   let user_name = getFirstName(user_id);
-  let expense_deducted = `<span style="color: black; font-size: 14px; margin: 0 2px;font-weight:600">Trp: ${expense}</span>`;
+  let expense_deducted = `<span style="color: black; font-size: 14px; margin: 0 2px;color:black;font-size: 12px">Trp: ${expense}</span>`;
 
   let add_bid =
-      `<div style="background-color: rgb(248 224 20); padding: 3px; font-family: Arial; width: 100%; box-sizing: border-box;">
+      `<div style="background-color: #FCBF01; padding: 3px; font-family: Arial; width: 100%; box-sizing: border-box;">
           <!-- First Row -->
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-              <span style="display: flex; align-items: center;color:black">
-                  <span title="${show_bid_name}" class="flag ${hr_name}" style="margin-right: 2px"></span>
-                  <div title="${sh_cntry}" style="white-space: nowrap; max-width: 80px; overflow: hidden; text-overflow: ellipsis; font-size: 13px;font-weight:600;color:black">${sh_cntry}</div>
+              <span style="display: flex; align-items: center;">
+                  <span title="${show_bid_name}" class="flag ${hr_name}" style="margin-right: 2px;"></span>
+                  <div title="${sh_cntry}" style="white-space: nowrap; max-width: 80px; overflow: hidden; text-overflow: ellipsis; font-size: 12px;color:black">${sh_cntry}</div>
               </span>
               ${expense_deducted}
               <span style="font-size: 13px; margin: 0 2px;color:black" title="${user_id}">👤 ${user_name}</span>
@@ -674,19 +703,20 @@ function getUserdataLikeIuacExt(show_bid_name,hr_name,f_bid_price,user_id,sh_cnt
           <!-- Second Row -->
           <div style="display: flex; gap: 3px; justify-content: center;">
               <input title="${show_bid_name}" 
-                  style="width: 105px; font-weight: bold; padding: 5px; height: 20px; text-align: center; border-radius: 3px; border: none; background-color: white; color: ${rate_color}; box-sizing: border-box;"
+                  style="width: 98px; font-weight: bold; padding: 5px; height: 20px; text-align: center; border-radius: 3px; border: none; background-color: white; color: ${rate_color}; box-sizing: border-box;"
                   class="already_bid_value njm_pre_price show_space_tb" disabled type="text" value="${f_bid_price}" placeholder="Bid...." />
 
               <input title="${show_bid_name}" 
-                  style="width: 105px; font-weight: bold; padding: 5px; height: 20px; text-align: center; border-radius: 3px; border: none; background-color: white; box-sizing: border-box;"
+                  style="width: 98px; font-weight: bold; padding: 5px; height: 20px; text-align: center; border-radius: 3px; border: none; background-color: white; box-sizing: border-box;"
                   class="already_bid_value njm_pre_ramarks" type="text" disabled value="${remark}" placeholder="Remarks...." />
           </div>
 
-        
+         
       </div>`;
 
   return add_bid;
 }
+
 
 function removeLeadingZeros(value) {
   return Number(value);
