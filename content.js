@@ -13,7 +13,7 @@ let currentUrl = window.location.href;
    
    
     var table =
-      `<div style="right:15px;top:10px; width:130px;position:fixed;font-family: Gotham, Helvetica Neue, Helvetica, Arial, sans-serif !important;border-radius: 10px;padding:15px;background-color:#e7b622e3;z-index:10000" id="modal_selection_div_id">
+      `<div style="right:15px;top:10px; width:130px;position:fixed;font-family: Gotham, Helvetica Neue, Helvetica, Arial, sans-serif !important;border-radius: 10px;padding:15px;background-color:#FFEA00;z-index:10000" id="modal_selection_div_id">
       <button id="load_bid_uss" style="padding:3px 12px;width:100%">Show Bid</button>
       </div>`;
      
@@ -23,8 +23,13 @@ let currentUrl = window.location.href;
         }, 1000);
 
         setTimeout(() => {
-          let button = $('#load_bid_uss');
-          button.click();
+          if(currentUrl == detail_page_en || currentUrl == detail_page_jpn){
+
+          }else{
+             let button = $('#load_bid_uss');
+            button.click();
+          }
+         
       }, 2000);
 
     var page_layout = '';
@@ -41,13 +46,13 @@ let currentUrl = window.location.href;
       $(table).insertAfter('#subnavi_shadow');
   }
 
-  if(currentUrl == detail_page_en || currentUrl == detail_page_jpn){
-    setTimeout(function() {
-      $(table).insertAfter('#top');
-      // let users_bid_div = "<div class='append_bids bid-header' id='" + chassis_detail + "' style='width: 240px; float:left; margin: 0 auto; padding: 5px 0px 11px;'></div>"
-      // $(users_bid_div).insertAfter($('table.favmove').eq(1));     
-  }, 2000);
-  }
+  // if(currentUrl == detail_page_en || currentUrl == detail_page_jpn){
+  //   setTimeout(function() {
+  //     $(table).insertAfter('#top');
+  //     // let users_bid_div = "<div class='append_bids bid-header' id='" + chassis_detail + "' style='width: 240px; float:left; margin: 0 auto; padding: 5px 0px 11px;'></div>"
+  //     // $(users_bid_div).insertAfter($('table.favmove').eq(1));     
+  // }, 2000);
+  // }
 
 
   $('body').on('click',"a[href*='popDetail']" ,function (event) {
@@ -119,6 +124,7 @@ let currentUrl = window.location.href;
           // --- 3. Get Chassis Code ---
           let td = tds.eq(4);
           let chassis_no = '';
+          let chassis_number = '';
           let chassis_modal = '';
           if (td.find('font').length > 0) {
             let fonts = td.find('font');
@@ -127,6 +133,7 @@ let currentUrl = window.location.href;
               chassis_modal =  firstFont; 
               let secondFont = $(fonts[1]).text().trim();
               chassis_no = firstFont + '-' + secondFont;
+              chassis_number = secondFont;
             }
           } else {
             let parts = td.html().split(/<br\s*\/?>/i);
@@ -135,27 +142,31 @@ let currentUrl = window.location.href;
                 chassis_modal =  firstPart;
                 let secondPart = parts[1].trim();
                 chassis_no = firstPart + '-' + secondPart;
+                chassis_number = secondPart;
             } else {
                 // If just in case there's only one part
                 chassis_no = td.text().trim();
                 chassis_modal =  chassis_no;
+                 chassis_number = chassis_no;
             }
           }
     
           chassis_no = cleanString(chassis_no);
+          chassis_number = cleanString(chassis_number);
           chassis_modal = cleanString( chassis_modal);
           // here we append our div
           let unique_append_div_id  = makeUniqueId(lot_no,date,chassis_modal);
-          let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 150px;margin: 0 auto;float:right'></div>"
+          let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 200px;margin: 0 auto;float:right'></div>"
           // $(targetRow).next().insertAfter(users_bid_div);
           // $(targetRow).find('td').eq(10).css('width','149px');
-          $(targetRow).find('td').eq(10).append(users_bid_div);
+          $(targetRow).find('td').eq(10).prepend(users_bid_div);
           // $(targetRow.next().find("td").eq(0)).append(users_bid_div)
           // Push to your list
           cars_data_list.push({
             date: date,
             lot_no: lot_no,
             chassis: chassis_no,
+            chassis_number: chassis_number,
             chassis_modal: chassis_modal
           });
         }
@@ -180,12 +191,14 @@ let currentUrl = window.location.href;
         
           let chassis_no = '';
           let chassis_modal = '';
+          let chassis_number = '';
           if (chassisTd.find('font').length >= 2) {
             let fonts = chassisTd.find('font');
             let first = $(fonts[0]).text().trim();
             chassis_modal =  first;
             let second = $(fonts[1]).text().trim();
             chassis_no = first + '-' + second;
+            chassis_number = second;
           } else {
             // fallback: split by <br>
             let parts = chassisTd.html().split(/<br\s*\/?>/i);
@@ -194,21 +207,24 @@ let currentUrl = window.location.href;
                 chassis_modal =  firstPart;
                 let secondPart = parts[1].trim();
                 chassis_no = firstPart + '-' + secondPart;
+                chassis_number = secondPart;
             } else {
                 // If just in case there's only one part
                 chassis_no = chassisTd.text().trim();
                 chassis_modal =  chassis_no;
+                chassis_number =  chassis_no;
             }
           }
     
           chassis_no = cleanString(chassis_no);
+          chassis_number = cleanString(chassis_number);
           
           chassis_modal = cleanString( chassis_modal);
             // here we append our div
             let unique_append_div_id  = makeUniqueId(lot_no,date,chassis_modal);
-            let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 150px;margin: 0 auto'></div>"
+            let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 200px;margin: 0 auto'></div>"
             // $(targetRow).next().insertAfter(users_bid_div);
-            $tds.find('td').eq(11).append(users_bid_div)
+            $tds.find('td').eq(11).prepend(users_bid_div)
             // console.log('here not show bid')
             // $(users_bid_div).insertAfter($('table.favmove').eq(1));
           
@@ -217,6 +233,7 @@ let currentUrl = window.location.href;
             date: date,
             lot_no: lot_no,
             chassis: chassis_no,
+            chassis_number: chassis_number,
             chassis_modal: chassis_modal
           });
         }
@@ -254,7 +271,7 @@ let currentUrl = window.location.href;
           }
         
         let unique_append_div_id  = makeUniqueId(lot_no,date,chassis_modal);
-        let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 150;margin: 0 auto;float: inline-start;'></div>"
+        let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 200px;margin: 0 auto;float: inline-start;'></div>"
         // $(targetRow).next().insertAfter(users_bid_div);
        
         $(users_bid_div).insertAfter($('table.favmove').eq(1)); 
@@ -278,7 +295,7 @@ let currentUrl = window.location.href;
         url: show_bid,
         crossDomain: true,
         async: true,
-        data: {  action: "tcc_wp_bid", data: JSON.stringify(cars_data_list)},
+        data: {  action: "tcc_wp_bid_ch_no", data: JSON.stringify(cars_data_list)},
         success: function (data) {
           $(".append_bids").each(function () {
             $(this).empty(); // Remove all content inside
@@ -294,7 +311,7 @@ let currentUrl = window.location.href;
                 let show_bid_name = record.user.user_id + "(" + record.country.hr_name + ")";
                 let  f_bid_price = record.rate;
                 let  user_id = record.user.user_id;
-                let sh_cntry = record.country.hr_name;
+                let sh_cntry = record.country.country_code;
                 let unique_id_data = makeUniqueId(record.lot_no,formatDate($('#week').val()),record.chassis_code)
 
                 let redText = $('#'+unique_id_data).closest("td").find(".red").text();
@@ -322,7 +339,7 @@ let currentUrl = window.location.href;
             let show_bid_name = record.user.user_id + "(" + record.country.hr_name + ")";
             let  f_bid_price = record.rate;
             let  user_id = record.user.user_id;
-            let sh_cntry = record.country.hr_name;
+            let sh_cntry = record.country.country_code;
           
 
             let redText = $('.blue09').closest('tr').find(".red").text();
@@ -338,7 +355,7 @@ let currentUrl = window.location.href;
             let user_bid = getUserData(record.wholeBid,show_bid_name,hr_name,f_bid_price,user_id,sh_cntry,record.expense,record.remark ?? '',rate_color)
               
 
-            $('.append_bids').append(user_bid)
+            $('.append_bids').prepend(user_bid)
             });
           }
 
@@ -375,6 +392,7 @@ let currentUrl = window.location.href;
             let td = tds.eq(4);
             let chassis_no = '';
             let chassis_modal = '';
+            let chassis_number = '';
             if (td.find('font').length > 0) {
               let fonts = td.find('font');
               if (fonts.length >= 2) {
@@ -382,6 +400,7 @@ let currentUrl = window.location.href;
                 chassis_modal =  firstFont; 
                 let secondFont = $(fonts[1]).text().trim();
                 chassis_no = firstFont + '-' + secondFont;
+                chassis_number = secondFont;
               }
             } else {
               let parts = td.html().split(/<br\s*\/?>/i);
@@ -390,26 +409,30 @@ let currentUrl = window.location.href;
                   chassis_modal =  firstPart;
                   let secondPart = parts[1].trim();
                   chassis_no = firstPart + '-' + secondPart;
+                  chassis_number = secondPart;
               } else {
                   // If just in case there's only one part
                   chassis_no = td.text().trim();
                   chassis_modal =  chassis_no;
+                  chassis_number =  chassis_no;
               }
             }
       
             chassis_no = cleanString(chassis_no);
+            chassis_number = cleanString(chassis_number);
             chassis_modal = cleanString( chassis_modal);
             // here we append our div
             let unique_append_div_id  = makeUniqueId(lot_no,date,chassis_modal);
-            let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 150px;margin: 0 auto;float:right'></div>"
+            let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 200px;margin: 0 auto;float:right'></div>"
             // $(targetRow).find('td').eq(10).css('width','149px');
-            $(targetRow).find('td').eq(10).append(users_bid_div);
+            $(targetRow).find('td').eq(10).prepend(users_bid_div);
             // $(targetRow.next().find("td").eq(0)).append(users_bid_div)
             // Push to your list
             cars_data_list.push({
               date: date,
               lot_no: lot_no,
               chassis: chassis_no,
+              chassis_number: chassis_number,
               chassis_modal: chassis_modal
             });
           }
@@ -434,12 +457,14 @@ let currentUrl = window.location.href;
           
             let chassis_no = '';
             let chassis_modal = '';
+            let chassis_number = '';
             if (chassisTd.find('font').length >= 2) {
               let fonts = chassisTd.find('font');
               let first = $(fonts[0]).text().trim();
               chassis_modal =  first;
               let second = $(fonts[1]).text().trim();
               chassis_no = first + '-' + second;
+              chassis_number = second;
             } else {
               // fallback: split by <br>
               let parts = chassisTd.html().split(/<br\s*\/?>/i);
@@ -448,26 +473,30 @@ let currentUrl = window.location.href;
                   chassis_modal =  firstPart;
                   let secondPart = parts[1].trim();
                   chassis_no = firstPart + '-' + secondPart;
+                  chassis_number = secondPart;
               } else {
                   // If just in case there's only one part
                   chassis_no = chassisTd.text().trim();
                   chassis_modal =  chassis_no;
+                  chassis_number =  chassis_no;
               }
             }
       
             chassis_no = cleanString(chassis_no);
+            chassis_number = cleanString(chassis_number);
             
             chassis_modal = cleanString( chassis_modal);
               // here we append our div
               let unique_append_div_id  = makeUniqueId(lot_no,date,chassis_modal);
-              let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 150px;margin: 0 auto;'></div>"
+              let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 200px;margin: 0 auto;'></div>"
               // $(targetRow).next().insertAfter(users_bid_div);
-              $($tds.find("td").eq(11)).append(users_bid_div)
+              $($tds.find("td").eq(11)).prepend(users_bid_div)
             // --- Add to array ---
             cars_data_list.push({
               date: date,
               lot_no: lot_no,
               chassis: chassis_no,
+              chassis_number: chassis_number,
               chassis_modal: chassis_modal
             });
           }
@@ -505,7 +534,7 @@ let currentUrl = window.location.href;
             }
           
           let unique_append_div_id  = makeUniqueId(lot_no,date,chassis_modal);
-          let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 150px;margin: 0 auto;float: inline-start;'></div>"
+          let users_bid_div = "<div class='append_bids bid-header' id='"+unique_append_div_id+"' style=' width: 200px;margin: 0 auto;float: inline-start;'></div>"
           // $(targetRow).next().insertAfter(users_bid_div);
           // $($tds.find("td").eq(11)).append(users_bid_div)
           $(users_bid_div).insertAfter($('table.favmove').eq(1)); 
@@ -529,7 +558,7 @@ let currentUrl = window.location.href;
           url: show_bid,
           crossDomain: true,
           async: true,
-          data: {  action: "tcc_wp_bid", data: JSON.stringify(cars_data_list)},
+          data: {  action: "tcc_wp_bid_ch_no", data: JSON.stringify(cars_data_list)},
           success: function (data) {
 
             $(".append_bids").each(function () {
@@ -548,7 +577,7 @@ let currentUrl = window.location.href;
                   let show_bid_name = record.user.user_id + "(" + record.country.hr_name + ")";
                   let  f_bid_price = record.rate;
                   let  user_id = record.user.user_id;
-                  let sh_cntry = record.country.hr_name;
+                  let sh_cntry = record.country.country_code;
                   let unique_id_data = makeUniqueId(record.lot_no,formatDate($('#week').val()),record.chassis_code)
   
                   let redText = $('#'+unique_id_data).closest("td").find(".red").text();
@@ -575,7 +604,7 @@ let currentUrl = window.location.href;
             let show_bid_name = record.user.user_id + "(" + record.country.hr_name + ")";
             let  f_bid_price = record.rate;
             let  user_id = record.user.user_id;
-            let sh_cntry = record.country.hr_name;
+            let sh_cntry = record.country.country_code;
            
   
             let redText = $('.blue09').closest('tr').find(".red").text();
@@ -591,7 +620,7 @@ let currentUrl = window.location.href;
             let user_bid = getUserData(record.wholeBid,show_bid_name,hr_name,f_bid_price,user_id,sh_cntry,record.expense,record.remark ?? '',rate_color)
               
   
-            $('.append_bids').append(user_bid)
+            $('.append_bids').prepend(user_bid)
       });
               // $('.append_bids').each(function() {  
               //   if ($(this).attr('id')) {
@@ -666,27 +695,37 @@ function getUserdataLikeIuacExt(whole_bid,show_bid_name,hr_name,f_bid_price,user
   let expense_deducted = `<span style="color: black; font-size: 14px; margin: 0 2px;color:black;font-size: 12px">Trp: ${expense}</span>`;
 
   let add_bid =
-      `<div style="background-color:#e7b622e3; padding: 3px; font-family: Arial; width: 100%; box-sizing: border-box;">
+      `<div style="background-color:#FFEA00; padding: 3px; font-family: Arial; width: 100%; box-sizing: border-box;">
           <!-- First Row -->
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-             
-              <span title="${show_bid_name}" class="flag ${hr_name}" style="margin-right: 2px;"></span>
-              <span>${sh_cntry}</span>
-             
-              <span style="font-size: 13px; margin: 0 2px;color:black" title="${user_id}">👤 </span>
-          </div>
-          <div>
-          <span style="text-align:end;font-weight:bold;width:60%;display:inline-block">(${whole_bid})</span>
-          <span style="float:right;width:40%;display:inline-block;text-align:end">${user_name}</span>
+          
+         <div style="display: flex; align-items: center; justify-content: space-between;  width:100%;">
+
+          <!-- First part (35%) -->
+            <div style="flex: 0 0 35%; display:flex; align-items:center; overflow:hidden;">
+                <span title="${show_bid_name}" class="flag ${hr_name}" style="margin-right: 2px;margin-top: -2px;"></span>
+                <div title="${sh_cntry}" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 15px; color:black;">
+                  ${sh_cntry}
+                </div>
+            </div>
+
+            <!-- Second part (30%) -->
+            <div style="flex: 0 0 30%; text-align:center; font-weight:bold; overflow:hidden;">
+              (${whole_bid})
+            </div>
+
+            <!-- Third part (35%) -->
+            <div style="flex: 0 0 35%; text-align:right; font-size:15px; color:black; overflow:hidden; text-overflow:ellipsis;" title="${user_id}">
+              ${user_name}
+            </div>
           </div>
           <!-- Second Row -->
           <div style="display: flex; gap: 3px; justify-content: center;">
               <input title="${show_bid_name}" 
-                  style="width: 70px; font-weight: bold; padding: 5px; height: 30px; text-align: center; border-radius: 3px; border: none; background-color: white; color: ${rate_color}; box-sizing: border-box;"
+                  style="width: 95px; font-weight: bold; padding: 5px; height: 30px; text-align: center; border-radius: 3px; border: none; background-color: white; color: ${rate_color}; box-sizing: border-box;"
                   class="already_bid_value njm_pre_price show_space_tb" disabled type="text" value="${f_bid_price}" placeholder="Bid...." />
 
               <input title="${show_bid_name}" 
-                  style="width: 70px; font-weight: bold; padding: 5px; height: 30px; text-align: center; border-radius: 3px; border: none; background-color: white; box-sizing: border-box;"
+                  style="width: 95px; font-weight: bold; padding: 5px; height: 30px; text-align: center; border-radius: 3px; border: none; background-color: white; box-sizing: border-box;"
                   class="already_bid_value njm_pre_ramarks" type="text" disabled value="${remark}" placeholder="Remarks...." />
           </div>
 
